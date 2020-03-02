@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const {
   createDrivers,
@@ -30,9 +31,9 @@ driverRouter.get('/', async (req, res, next) => {
 
 
 driverRouter.put('/', async (req, res, next) => {
-  const { driverId, newName } = req.body;
+  const { driver_id, driver_name } = req.body;
   try {
-    const data = await updateDrivers(driverId, newName);
+    const data = await updateDrivers(driver_id, driver_name);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -40,10 +41,10 @@ driverRouter.put('/', async (req, res, next) => {
 });
 
 
-driverRouter.delete('/', async (req, res, next) => {
-  const { driverId } = req.body;
+driverRouter.delete('/:driver_id', async (req, res, next) => {
+  const { driver_id } = req.params;
   try {
-    const data = await deleteDrivers(driverId);
+    const data = await deleteDrivers(driver_id);
     res.status(200).send(data);
   } catch (error) {
     next(error);

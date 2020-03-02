@@ -27,7 +27,8 @@ const Drivers = () => {
   }
 
   const deleteDriver = async (driverObj) => {
-    const response = await axios.delete('/api/drivers', driverObj); //id may be a bug
+    console.log(driverObj)
+    const response = await axios.delete(`/api/drivers/${driverObj.driver_id}`); //id may be a bug
     if (response !== null) {
       const filteredDrivers = drivers.filter(item => {
         return item.driver_id !== driverObj.driver_id;
