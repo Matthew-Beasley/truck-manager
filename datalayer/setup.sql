@@ -33,8 +33,8 @@ CREATE TABLE drivers (
 
 CREATE TABLE routes (
   route_id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
-  truck_id UUID REFERENCES trucks(truck_id),
-  location_id UUID REFERENCES locations(location_id)
+  truck_number INTEGER REFERENCES trucks(truck_number),
+  location_name VARCHAR(255) REFERENCES locations(location_name)
 );
 
 CREATE TABLE service_schedule (

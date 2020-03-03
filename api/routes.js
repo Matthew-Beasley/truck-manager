@@ -10,9 +10,9 @@ const routeRouter = express.Router();
 
 
 routeRouter.post('/', async (req, res, next) => {
-  const { truck_number, location_number } = req.body;
+  const { truck_number, location_name } = req.body;
   try {
-    const data = await createRoutes(truck_number, location_number);
+    const data = await createRoutes(truck_number, location_name);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -41,7 +41,7 @@ routeRouter.put('/', async (req, res, next) => {
 });
 
 
-routeRouter.delete('/route_id', async (req, res, next) => {
+routeRouter.delete('/:route_id', async (req, res, next) => {
   const { route_id } = req.params;
   try {
     const data = await deleteRoutes(route_id);

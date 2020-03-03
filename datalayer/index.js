@@ -19,6 +19,13 @@ const {
   deleteRoutes
 } = require('./routes');
 
+const {
+  createTrucks,
+  readTrucks,
+  updateTrucks,
+  deleteTrucks
+} = require('./trucks');
+
 
 module.exports = {
   createDrivers,
@@ -34,6 +41,11 @@ module.exports = {
   createRoutes,
   readRoutes,
   updateRoutes,
-  deleteRoutes
+  deleteRoutes,
+
+  createTrucks,
+  readTrucks,
+  updateTrucks,
+  deleteTrucks
 };
 
