@@ -12,6 +12,13 @@ const {
   deleteLocations
 } = require('./locations');
 
+const {
+  createRoutes,
+  readRoutes,
+  updateRoutes,
+  deleteRoutes
+} = require('./routes');
+
 
 module.exports = {
   createDrivers,
@@ -22,6 +29,11 @@ module.exports = {
   createLocations,
   readLocations,
   updateLocations,
-  deleteLocations
+  deleteLocations,
+
+  createRoutes,
+  readRoutes,
+  updateRoutes,
+  deleteRoutes
 };
 
