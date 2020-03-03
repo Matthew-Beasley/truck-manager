@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 const Drivers = () => {
   const [drivers, setDrivers] = useState([]);
   const [driver, setDriver] = useState('');
@@ -10,11 +11,13 @@ const Drivers = () => {
       .then(response => setDrivers(response.data));
   }, []);
 
+
   const createDriver = async () => {
     const response = await axios.post('/api/drivers', { driverName: driver });
     setDriver('');
     setDrivers([...drivers, response.data])
   }
+
 
   const deleteDriver = async (driverObj) => {
     const response = await axios.delete(`/api/drivers/${driverObj.driver_id}`);
@@ -26,6 +29,7 @@ const Drivers = () => {
     }
   }
 
+  
   return (
     <div id="drivers-wrapper">
       <form onSubmit={ev => ev.preventDefault()}>

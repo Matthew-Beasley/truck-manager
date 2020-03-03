@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import Drivers from './Drivers';
