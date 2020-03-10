@@ -10,9 +10,9 @@ const {
 const truckRouter = express.Router();
 
 truckRouter.post('/', async (req, res, next) => {
-  const { truck_number, truck_type, truck_mileage, driver } = req.body;
+  const { number, type, mileage, driver } = req.body;
   try {
-    const data = await createTrucks(truck_number, truck_type, truck_mileage, driver);
+    const data = await createTrucks(number, type, mileage, driver);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -31,9 +31,9 @@ truckRouter.get('/', async (req, res, next) => {
 
 
 truckRouter.put('/', async (req, res, next) => {
-  const { truck_mileage, driver, truck_number } = req.body;
+  const { mileage, driver, number } = req.body;
   try {
-    const data = await updateTrucks(truck_mileage, driver, truck_number);
+    const data = await updateTrucks(mileage, driver, number);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -41,10 +41,10 @@ truckRouter.put('/', async (req, res, next) => {
 });
 
 
-truckRouter.delete('/:truck_number', async (req, res, next) => {
-  const { truck_number } = req.params;
+truckRouter.delete('/:number', async (req, res, next) => {
+  const { number } = req.params;
   try {
-    const data = await deleteTrucks(truck_number);
+    const data = await deleteTrucks(number);
     res.status(200).send(data);
   } catch (error) {
     next(error);

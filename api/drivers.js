@@ -31,9 +31,9 @@ driverRouter.get('/', async (req, res, next) => {
 
 
 driverRouter.put('/', async (req, res, next) => {
-  const { driver_id, driver_name } = req.body;
+  const { id, dname } = req.body;
   try {
-    const data = await updateDrivers(driver_id, driver_name);
+    const data = await updateDrivers(id, dname);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -41,10 +41,10 @@ driverRouter.put('/', async (req, res, next) => {
 });
 
 
-driverRouter.delete('/:driver_id', async (req, res, next) => {
-  const { driver_id } = req.params;
+driverRouter.delete('/:id', async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const data = await deleteDrivers(driver_id);
+    const data = await deleteDrivers(id);
     res.status(200).send(data);
   } catch (error) {
     next(error);

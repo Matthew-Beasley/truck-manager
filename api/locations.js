@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 const express = require('express');
-const {
-  createLocations,
+const {createLocations,
   readLocations,
   updateLocations,
   deleteLocations } = require('../datalayer/locations');
@@ -9,9 +8,9 @@ const {
 const locationRouter = express.Router();
 
 locationRouter.post('/', async (req, res, next) => {
-  const { location_name, location_address } = req.body;
+  const { name, location_address } = req.body;
   try {
-    const data = await createLocations(location_name, location_address);
+    const data = await createLocations(name, location_address);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -30,9 +29,9 @@ locationRouter.get('/', async (req, res, next) => {
 
 
 locationRouter.put('/', async (req, res, next) => {
-  const { location_address, location_name } = req.body;
+  const { location_address, name } = req.body;
   try {
-    const data = await updateLocations(location_address, location_name);
+    const data = await updateLocations(location_address, name);
     res.status(200).send(data);
   } catch (error) {
     next(error);
@@ -40,10 +39,10 @@ locationRouter.put('/', async (req, res, next) => {
 });
 
 
-locationRouter.delete('/:location_id', async (req, res, next) => {
-  const { location_id } = req.params;
+locationRouter.delete('/:id', async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const data = await deleteLocations(location_id);
+    const data = await deleteLocations(id);
     res.status(200).send(data);
   } catch (error) {
     next(error);

@@ -8,7 +8,8 @@
     "start": "node server.js",
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
-    "start:dev": "nodemon server.js --ignore dist/ --ignore src/ & npm run build:dev"
+    "start:dev": "nodemon server.js --ignore dist/ --ignore src/ & npm run build:dev",
+    "setupdb": "node ./datalayer/dbSetup.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
-    "pg": "^7.18.2"
+    "pg": "^7.18.2",
+    "react-router": "^5.1.2"
   }
 }

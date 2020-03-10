@@ -14,18 +14,12 @@ header {
   align-self: center;
 }
 
-a {
-  color: white;
-}
-
-.Link {
+header > button {
   width: 12rem;
   height: 3rem;
-  margin: 1rem 0rem 3rem 0rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 1rem .25rem 3rem .25rem;
+  font-size: 1rem;
+  color: white;
   background-color: teal;
 }
 

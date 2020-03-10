@@ -1,3 +1,8 @@
+
+const { client } = require('./client');
+
+const createTables = async () => {
+  const sql = `
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 DROP TABLE IF EXISTS service_schedule;
 DROP TABLE IF EXISTS routes;
@@ -43,4 +48,8 @@ CREATE TABLE service_schedule (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
   "truckId" UUID NOT NULL REFERENCES trucks(id),
   "serviceId" UUID NOT NULL REFERENCES services(id)
-);
+);`;
+  await client.query(sql);
+}
+
+createTables();

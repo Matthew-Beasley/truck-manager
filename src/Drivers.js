@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-const Drivers = () => {
-  const [drivers, setDrivers] = useState([]);
+const Drivers = ({ drivers, setDrivers }) => {
   const [driver, setDriver] = useState('');
 
   useEffect(() => {
@@ -20,16 +19,16 @@ const Drivers = () => {
 
 
   const deleteDriver = async (driverObj) => {
-    const response = await axios.delete(`/api/drivers/${driverObj.driver_id}`);
+    const response = await axios.delete(`/api/drivers/${driverObj.id}`);
     if (response !== null) {
       const filteredDrivers = drivers.filter(item => {
-        return item.driver_id !== driverObj.driver_id;
+        return item.id !== driverObj.id;
       });
       setDrivers(filteredDrivers);
     }
   }
 
-  
+
   return (
     <div id="drivers-wrapper">
       <form onSubmit={ev => ev.preventDefault()}>
@@ -41,9 +40,9 @@ const Drivers = () => {
         <ul id="drivers-list">
           {drivers.map(driverItem => {
             return (
-              <li key={driverItem.driver_id}>
+              <li key={driverItem.id}>
                 <div className="driver-card">
-                  {driverItem.driver_name}
+                  {driverItem.name}
                   <button type="button" onClick={() => deleteDriver(driverItem)}>X</button>
                 </div>
               </li>

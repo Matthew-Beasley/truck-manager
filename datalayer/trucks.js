@@ -2,7 +2,7 @@ const { client } = require('./client');
 
 const createTrucks = async (truckNumber, truckType, truckMileage, driver) => {
   const sql = `
-  INSERT INTO trucks (truck_number, truck_type, truck_mileage, driver)
+  INSERT INTO trucks (number, type, mileage, driver)
   VALUES ($1, $2, $3, $4)
   RETURNING *`;
   return (await client.query(sql, [truckNumber, truckType, truckMileage, driver])).rows[0];
@@ -17,8 +17,8 @@ const readTrucks = async () => {
 const updateTrucks = async (truckMileage, driver, truckNumber) => {
   const sql = `
   UPDATE trucks
-  SET truck_mileage = $1, driver = $2
-  WHERE truck_number = $3
+  SET mileage = $1, driver = $2
+  WHERE number = $3
   RETURNING *`;
   return (await client.query(sql, [truckMileage, driver, truckNumber])).rows[0];
 }
@@ -27,7 +27,7 @@ const updateTrucks = async (truckMileage, driver, truckNumber) => {
 const deleteTrucks = async (truckNumber) => {
   const sql = `
   DELETE FROM trucks
-  WHERE truck_number = $1
+  WHERE number = $1
   RETURNING *`;
   return (await client.query(sql, [truckNumber])).rows[0];
 }
