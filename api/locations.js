@@ -8,9 +8,9 @@ const {createLocations,
 const locationRouter = express.Router();
 
 locationRouter.post('/', async (req, res, next) => {
-  const { name, location_address } = req.body;
+  const { name, address } = req.body;
   try {
-    const data = await createLocations(name, location_address);
+    const data = await createLocations(name, address);
     res.status(200).send(data);
   } catch (error) {
     next(error);

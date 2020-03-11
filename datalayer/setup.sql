@@ -17,7 +17,7 @@ CREATE TABLE trucks (
 CREATE TABLE locations (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
   name VARCHAR(255) NOT NULL UNIQUE CHECK(char_length(name) > 1),
-  location_address VARCHAR(500)  
+  address VARCHAR(500)  
 );
 
 CREATE TABLE services (

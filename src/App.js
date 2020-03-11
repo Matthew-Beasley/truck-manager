@@ -4,6 +4,7 @@ import { Route, useHistory } from 'react-router-dom';
 import Drivers from './Drivers';
 import Trucks from './Trucks';
 import Dispatch from './Dispatch';
+import Locations from './Locations';
 import axios from 'axios';
 
 
@@ -25,15 +26,18 @@ const App = () => {
   const history = useHistory();
   const [drivers, setDrivers] = useState([]);
   const [trucks, setTrucks] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     Promise.all([
       axios.get('/api/drivers'),
-      axios.get('/api/trucks')
+      axios.get('/api/trucks'),
+      axios.get('/api/locations')
     ])
       .then(values => {
         setDrivers(values[0].data);
         setTrucks(values[1].data);
+        setLocations(values[2].data);
       });
   }, [])
 
@@ -49,6 +53,7 @@ const App = () => {
         <button type="button" onClick={() => navigateTo('/dispatch')}>Dispatch</button>
         <button type="button" onClick={() => navigateTo('/drivers')}>Drivers</button>
         <button type="button" onClick={() => navigateTo('/trucks')}>Trucks</button>
+        <button type="button" onClick={() => navigateTo('/locations')}>Locations</button>
         <button type="button" onClick={() => navigateTo('/service')}>Service</button>
       </header>
       <div id="routes">
@@ -61,12 +66,17 @@ const App = () => {
 
         <Route
           path="/dispatch" render={() => <Dispatch
-            trucks={trucks} />}
+            trucks={trucks} locations={locations} />}
         />
 
         <Route
           path="/trucks" render={() => <Trucks
             drivers={drivers} trucks={trucks} setTrucks={setTrucks} />}
+        />
+
+        <Route 
+          path="/locations" render={() => <Locations
+            locations={locations} setLocations={setLocations} />}
         />
 
         <Route path="/service" component={Service} />

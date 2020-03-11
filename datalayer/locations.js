@@ -2,7 +2,7 @@ const { client } = require('./client');
 
 const createLocations = async (locationName, locationAddress) => {
   const sql = `
-  INSERT INTO locations (name, location_address)
+  INSERT INTO locations (name, address)
   VALUES ($1, $2)
   RETURNING *`;
   return (await client.query(sql, [locationName, locationAddress])).rows[0];
@@ -17,19 +17,19 @@ const readLocations = async () => {
 const updateLocations = async (locationAddress, locationName) => {
   const sql = `
   UPDATE locations
-  SET location_address = $1
+  SET address = $1
   WHERE name = $2
   RETURNING *`;
   return (await client.query(sql, [locationAddress, locationName])).rows[0];
 }
 
 
-const deleteLocations = async (locationName) => {
+const deleteLocations = async (id) => {
   const sql = `
   DELETE FROM locations
-  WHERE name = $1
+  WHERE id = $1
   RETURNING *`;
-  return (await client.query(sql, [locationName])).rows[0];
+  return (await client.query(sql, [id])).rows[0];
 }
 
 module.exports = {
